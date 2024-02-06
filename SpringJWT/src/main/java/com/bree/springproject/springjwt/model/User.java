@@ -17,22 +17,22 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "first_name")
-    String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    String lastName;
+    private String lastName;
 
-    @Column(name = "user_name")
-    String userName;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     @Enumerated(value = EnumType.STRING)
-     Role role;
+    private Role role;
 
 
     @Override
@@ -42,7 +42,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
