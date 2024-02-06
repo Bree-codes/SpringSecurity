@@ -1,6 +1,8 @@
 package com.bree.springproject.springjwt.controller;
 
+import com.bree.springproject.springjwt.model.AuthenticationResponse;
 import com.bree.springproject.springjwt.model.User;
+import com.bree.springproject.springjwt.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutheticationController {
     private final AuthenticationService authService;
 
-    public AuthenticationController(AuthenticationService authService) {
+    public AutheticationController(AuthenticationService authService) {
         this.authService = authService;
     }
 

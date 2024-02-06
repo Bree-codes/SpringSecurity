@@ -3,7 +3,6 @@ package com.bree.springproject.springjwt.model;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "token")
-
 public class Token {
 
     @Id
