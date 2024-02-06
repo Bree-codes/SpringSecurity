@@ -1,7 +1,7 @@
 package com.bree.springproject.springjwt.filter;
 
 import com.bree.springproject.springjwt.service.JwtService;
-import com.bree.springproject.springjwt.service.UserDetailsImpl;
+import com.bree.springproject.springjwt.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,10 +19,10 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final UserDetailsImpl userDetailsImpl;
+    private final UserDetailsServiceImpl userDetailsImpl;
 
 
-    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsImpl userDetailsImpl) {
+    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsServiceImpl userDetailsImpl) {
         this.jwtService = jwtService;
         this.userDetailsImpl= userDetailsImpl;
     }
