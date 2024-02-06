@@ -1,47 +1,24 @@
 package com.bree.springproject.springjwt.service;
 
-import org.springframework.security.core.GrantedAuthority;
+
+import com.bree.springproject.springjwt.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-
 @Service
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetailsService {
 
+    private final UserRepository userRepository;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public UserDetailsImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(()-> new UsernameNotFoundException("User Not Found.."));
     }
 }
