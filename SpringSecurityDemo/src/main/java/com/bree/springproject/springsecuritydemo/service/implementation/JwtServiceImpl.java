@@ -25,18 +25,21 @@ public class JwtServiceImpl {
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    public String extractUsername(String token){
+        return extractClaim(token,Claims::getSubject);
+    }
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        Claims claims = extractAllClaims(token);
+        final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
     private Key getSigninKey() {
-        byte [] key = Decoders.BASE64.decode("f8d17bee3760f108132332e970eb8a0b87f74499197db195996a8ba7b5ddaf08");
+        byte [] key = Decoders.BASE64.decode("413F4428472B4B6250655368566D5970337336763979244226452948404D6351");
         return Keys.hmacShaKeyFor(key);
     }
 
     private Claims extractAllClaims(String token){
-       /* return Jwts.ParserBuilder().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();*/
         return Jwts.parser().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();
     }
 
