@@ -7,19 +7,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.context.SecurityContext;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-//import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.apache.commons.lang3.StringUtils;
-
 
 import java.io.IOException;
-
-import static org.apache.logging.log4j.util.Strings.isEmpty;
 
 @Component
 @RequiredArgsConstructor
@@ -44,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             userEmail = jwtService.extractUserName(jwt);
 
            if(StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication()== null){
-               UserDetails userDetails = userService.userDetailsService().loadUserByUserame(userEmail);
+               UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
            }
 
 
