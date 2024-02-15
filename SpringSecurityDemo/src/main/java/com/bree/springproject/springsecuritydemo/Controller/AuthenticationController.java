@@ -2,6 +2,7 @@ package com.bree.springproject.springsecuritydemo.Controller;
 
 import com.bree.springproject.springsecuritydemo.DTO.JwtAuthenticationResponse;
 import com.bree.springproject.springsecuritydemo.DTO.LoginRequest;
+import com.bree.springproject.springsecuritydemo.DTO.RefreshTokenRequest;
 import com.bree.springproject.springsecuritydemo.DTO.SignUpRequest;
 import com.bree.springproject.springsecuritydemo.entity.User;
 import com.bree.springproject.springsecuritydemo.service.AuthenticationService;
@@ -27,5 +28,10 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody LoginRequest loginRequest){
         return ResponseEntity.ok(authenticationService.login(loginRequest));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
+        return ResponseEntity.ok(authenticationService.refreshToken(refreshTokenRequest));
     }
 }
