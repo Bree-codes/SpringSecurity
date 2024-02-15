@@ -1,5 +1,6 @@
 package com.bree.springproject.springsecuritydemo.service.implementation;
 
+import com.bree.springproject.springsecuritydemo.service.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
@@ -16,7 +17,18 @@ import java.util.function.Function;
 import static io.jsonwebtoken.Jwts.*;
 
 @Service
-public class JwtServiceImpl {
+public class JwtServiceImpl implements JwtService {
+
+
+   /* public String extractUsername(String token){
+
+        return extractClaim(token,Claims::getSubject);
+    }*/
+
+    @Override
+    public String extractUserName(String token) {
+        return extractClaim(token,Claims::getSubject);
+    }
 
     public String generateToken(UserDetails userDetails){
         return builder().setSubject(userDetails.getUsername())
@@ -26,9 +38,7 @@ public class JwtServiceImpl {
                 .compact();
     }
 
-    public String extractUsername(String token){
-        return extractClaim(token,Claims::getSubject);
-    }
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -44,7 +54,7 @@ public class JwtServiceImpl {
     }
 
     public boolean isTokenValid(String token,UserDetails userDetails){
-        final String username = extractUsername(token);
+        final String username = extractUserName(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
