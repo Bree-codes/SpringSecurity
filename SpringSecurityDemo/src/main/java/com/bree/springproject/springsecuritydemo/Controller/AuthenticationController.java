@@ -1,5 +1,7 @@
 package com.bree.springproject.springsecuritydemo.Controller;
 
+import com.bree.springproject.springsecuritydemo.DTO.JwtAuthenticationResponse;
+import com.bree.springproject.springsecuritydemo.DTO.LoginRequest;
 import com.bree.springproject.springsecuritydemo.DTO.SignUpRequest;
 import com.bree.springproject.springsecuritydemo.entity.User;
 import com.bree.springproject.springsecuritydemo.service.AuthenticationService;
@@ -20,5 +22,10 @@ public class AuthenticationController {
     @PostMapping("/signup")
     public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody LoginRequest loginRequest){
+        return ResponseEntity.ok(authenticationService.login(loginRequest));
     }
 }
