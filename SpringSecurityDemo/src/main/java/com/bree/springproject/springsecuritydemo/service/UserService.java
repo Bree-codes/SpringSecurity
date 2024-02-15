@@ -1,8 +1,9 @@
 package com.bree.springproject.springsecuritydemo.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Service
 public interface UserService {
+
+    UserDetailsService userDetailsService();
 
 }
