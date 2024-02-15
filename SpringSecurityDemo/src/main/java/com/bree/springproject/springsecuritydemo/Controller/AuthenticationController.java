@@ -1,6 +1,12 @@
 package com.bree.springproject.springsecuritydemo.Controller;
 
+import com.bree.springproject.springsecuritydemo.DTO.SignUpRequest;
+import com.bree.springproject.springsecuritydemo.entity.User;
+import com.bree.springproject.springsecuritydemo.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,5 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
+    private final AuthenticationService authenticationService;
 
+    @PostMapping("/signup")
+    public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+    }
 }
