@@ -12,11 +12,11 @@
     <div class="mt-5 mx-auto max-w-sm w-full">
         <form class="bg-blue overflow-hidden p-10 rounded-xl shadow-lg space-y-6" th:action="@{/login}" method="post">
 
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+           <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img class="mx-auto h-40 w-auto" th:src="@{/images/img.png}">
             </div>
 
-            <h4 class="font-bold leading-9 mt-10 text-center text-gray-900 text-xl tracking-tight">Sign in to your account</h4>
+            <h4 class="font-bold leading-9 mt-10 text-center text-gray-900 text-xl tracking-tight">Log in to your account</h4>
 
             <div th:if="${param.error}" class="bg-rose-100 justify-center p-4 ring-1 ring-rose-200 rounded-md">
                 <p>Username and Password Mismatch</p>
