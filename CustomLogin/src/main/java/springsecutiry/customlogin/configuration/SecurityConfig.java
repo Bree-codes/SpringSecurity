@@ -6,10 +6,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.net.http.HttpRequest;
-
-import static jdk.internal.classfile.Classfile.build;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
