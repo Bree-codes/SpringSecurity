@@ -1,2 +1,2 @@
 # SpringSecurity
-Learning all about Spring Security.
+Learning all about Spring Security
