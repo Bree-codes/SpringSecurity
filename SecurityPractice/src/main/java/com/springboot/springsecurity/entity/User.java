@@ -22,13 +22,13 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
+    String firstName;
+    String lastName;
+    String username;
+    String password;
 
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,3 +55,4 @@ public class User implements UserDetails {
         return true;
     }
 }
+
