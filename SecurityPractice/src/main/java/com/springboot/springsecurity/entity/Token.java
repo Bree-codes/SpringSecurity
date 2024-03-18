@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "token_details")
+@Table(name = "token")
 public class Token {
 
     @Id
