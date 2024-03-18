@@ -10,8 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class AuthenticationService {
@@ -53,7 +52,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
 
-    public AuthenticationResponse authenticate(User userRequest) {
+    public <List> AuthenticationResponse authenticate(User userRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
 
@@ -64,9 +63,22 @@ public class AuthenticationService {
 
         User user = repository.findByUsername(userRequest.getUsername()).orElseThrow();
         String token = jwtService.generateToken(user);
+
+        revokeAllTokenByUser(user);
         saveUserToken(token,user);
 
         return new AuthenticationResponse(token);
+    }
+
+    private void revokeAllTokenByUser(User user) {
+        List<Token> validTokenListByUser = tokenRepository.findAllTokensByUser(user.getId());
+        if(!validTokenListByUser.isEmpty()){
+            validTokenListByUser.forEach(t->{
+                t.setIsLoggedOut(true);
+            });
+        }
+
+        tokenRepository.saveAll(validTokenListByUser);
     }
 
     private void saveUserToken(String token, User user) {
