@@ -58,7 +58,7 @@ public class SecurityConfig {
                                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .logout(l->l
                         .logoutUrl("api/logout")
-                        .addLogoutHandler(logoutHandler)
+                        .addLogoutHandler(logoutHandler) //filter
                         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()
                         ))
                 .build();
