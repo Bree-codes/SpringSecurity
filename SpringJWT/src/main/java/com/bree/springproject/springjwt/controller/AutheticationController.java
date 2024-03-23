@@ -16,7 +16,6 @@ public class AutheticationController {
         this.authService = authService;
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody User request
