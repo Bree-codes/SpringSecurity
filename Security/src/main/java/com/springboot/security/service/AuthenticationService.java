@@ -1,6 +1,7 @@
 package com.springboot.security.service;
 
 import com.springboot.security.Dto.AuthorizationResponse;
+import com.springboot.security.Dto.LoginRequest;
 import com.springboot.security.Dto.RegistrationRequest;
 import com.springboot.security.entity.User;
 import com.springboot.security.repository.UserRepo;
@@ -41,4 +42,17 @@ public class AuthenticationService {
 
         return new ResponseEntity<>(authorizationResponse, HttpStatus.CREATED);
     }
+
+    public ResponseEntity<AuthorizationResponse> loginUser(
+            LoginRequest loginRequest, HttpServletResponse httpServletResponse){
+
+        User user = new User();
+
+        user.setUsername(loginRequest.getUsername());
+        user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
+
+return null;
+    }
+
+
 }
