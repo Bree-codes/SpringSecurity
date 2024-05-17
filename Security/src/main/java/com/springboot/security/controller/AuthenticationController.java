@@ -1,6 +1,7 @@
 package com.springboot.security.controller;
 
 import com.springboot.security.Dto.AuthorizationResponse;
+import com.springboot.security.Dto.LoginRequest;
 import com.springboot.security.Dto.RegistrationRequest;
 import com.springboot.security.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,5 +26,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthorizationResponse> register
             (@RequestBody RegistrationRequest registrationRequest, HttpServletResponse response) {
         return authenticationService.registerUser(registrationRequest,response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthorizationResponse> login(
+            @RequestBody LoginRequest loginRequest,HttpServletResponse response){
+        return authenticationService.loginUser(loginRequest,response);
     }
 }

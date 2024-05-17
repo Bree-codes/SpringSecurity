@@ -51,7 +51,13 @@ public class AuthenticationService {
         user.setUsername(loginRequest.getUsername());
         user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
 
-return null;
+        AuthorizationResponse authorizationResponse = new AuthorizationResponse();
+        authorizationResponse.setId(user.getId());
+        authorizationResponse.setHttpStatus(HttpStatus.OK);
+        authorizationResponse.setMessage("Login Successful");
+
+        return new ResponseEntity<>(authorizationResponse,HttpStatus.OK);
+
     }
 
 
