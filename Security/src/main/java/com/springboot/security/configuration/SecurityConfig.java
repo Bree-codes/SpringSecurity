@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
             throws Exception {
